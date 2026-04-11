@@ -1,0 +1,15 @@
+- name: Add GH repository
+  ansible.builtin.get_url:
+    url: https://cli.github.com/packages/rpm/gh-cli.repo
+    dest: /etc/yum.repos.d/gh-cli.repo
+    mode: '0644'
+
+- name: Install GH
+  dnf:
+    name: gh
+    state: present
+
+- name: Install GIT
+  dnf:
+    name: git
+    state: present

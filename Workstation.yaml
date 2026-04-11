@@ -1,0 +1,11 @@
+- name: Workstation
+  hosts: localhost
+  become: true
+
+  roles: 
+    - blotware
+    - beekeeper
+    - filezilla
+    - vscode
+    - brave
+    - git

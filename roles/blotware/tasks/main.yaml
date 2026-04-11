@@ -1,0 +1,13 @@
+- name: Uninstall Blotwares
+  dnf:
+    name:
+      - kmines
+      - kmahjongg
+      - kpat
+      # - ktnef
+      # - kmail
+      # - kmail-account-wizard
+      # - kmail-libs
+      # - kmailtransport
+    state: absent
+    autoremove: yes

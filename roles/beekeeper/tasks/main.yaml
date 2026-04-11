@@ -1,0 +1,24 @@
+- name: Install CURL (Dependency)
+  dnf:
+    name: curl
+    state: present
+
+- name: Import GPG KEY of Beekeeper
+  rpm_key:
+    state: present
+    key: https://rpm.beekeeperstudio.io/beekeeper.key
+
+- name: Add Beekeeper Studio repository
+  get_url:
+    url: https://rpm.beekeeperstudio.io/beekeeper-studio.repo
+    dest: /etc/yum.repos.d/beekeeper-studio.repo
+    mode: '0644'
+
+- name: Update DNF cache
+  dnf:
+    update_cache: true
+
+- name: Install Beekeeper Studio
+  dnf:
+    name: beekeeper-studio
+    state: present

@@ -1,0 +1,15 @@
+- name: Install dnf-plugins-core (Dependency)
+  ansible.builtin.dnf:
+    name: dnf-plugins-core
+    state: present
+
+- name: Add Brave repository
+  get_url:
+    url: https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+    dest: /etc/yum.repos.d/brave-browser.repo
+    mode: '0644'
+
+- name: Install Brave
+  ansible.builtin.dnf:
+    name: brave-browser
+    state: present
