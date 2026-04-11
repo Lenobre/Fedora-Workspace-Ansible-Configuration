@@ -2,6 +2,9 @@
   hosts: localhost
   become: true
 
+  vars:
+    username: lecndu
+
   roles: 
     - blotware
     - beekeeper
@@ -9,3 +12,4 @@
     - vscode
     - brave
     - git
+    - docker

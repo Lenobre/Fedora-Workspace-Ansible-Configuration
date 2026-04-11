@@ -1,0 +1,28 @@
+- name: Add Docker Engine repository
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/fedora/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    mode: '0644'
+
+- name: Install Docker
+  dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+
+- name: Add user to Docker group
+  user:
+    name: "{{ username }}" 
+    groups: docker
+    append: yes
+
+- name: Disable Docker Service (not start with computer)
+  ansible.builtin.systemd:
+    name: docker
+    enabled: no
+    state: stopped
+    
