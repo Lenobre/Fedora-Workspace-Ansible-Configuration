@@ -4,6 +4,7 @@
 
   vars:
     username: lecndu
+    user_home: /home/{{ username }}
 
   roles: 
     - blotware
@@ -15,3 +16,4 @@
     - docker
     - php
     - composer
+    - nodejs

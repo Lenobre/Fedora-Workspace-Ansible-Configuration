@@ -1,0 +1,14 @@
+- name: Install NVM for user
+  become: false
+  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+  args:
+    creates: "{{ user_home }}/.nvm/nvm.sh"
+
+- name: Install Node 24 via NVM
+  become: false
+  shell: |
+    source {{ user_home }}/.nvm/nvm.sh
+    nvm install 24
+    nvm alias default 24
+  args:
+    executable: /bin/bash
