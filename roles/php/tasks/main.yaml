@@ -1,0 +1,4 @@
+- name: Install PHP Composer
+  dnf:
+    name: php
+    state: present
