@@ -1,26 +1,12 @@
-- name: Install NVM for user
-  become: false
-  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
-  args:
-    creates: "{{ user_home }}/.nvm/nvm.sh"
-
-- name: Check if Node 24 is installed
-  become: false
-  shell: |
-    source {{ user_home }}/.nvm/nvm.sh
-    nvm ls 24
-  args:
-    executable: /bin/bash
-  register: node_check
+- name: Check if NodeJS is installed
+  shell: which node
+  register: nodejs_check
   changed_when: false
   failed_when: false
 
-- name: Install Node 24 via NVM
-  become: false
-  shell: |
-    source {{ user_home }}/.nvm/nvm.sh
-    nvm install 24
-    nvm alias default 24
-  args:
-    executable: /bin/bash
-  when: "'N/A' in node_check.stdout"
+- name: DNF install NodeJS
+  dnf:
+    name: nodejs
+    state: present
+  when: nodejs_check.rc != 0 
+
