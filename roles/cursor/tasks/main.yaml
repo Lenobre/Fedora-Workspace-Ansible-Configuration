@@ -1,0 +1,19 @@
+- name: Check if Cursor is installed
+  shell: rpm -q cursor
+  register: cursor_check
+  changed_when: false
+  failed_when: false
+
+- name: Download Cursor RPM
+  get_url:
+    url: "https://api2.cursor.sh/updates/download/golden/linux-x64-rpm/cursor/3.0"
+    dest: /tmp/cursor.rpm
+    mode: '0644'
+  when: cursor_check.rc != 0
+
+- name: Install Cursor RPM
+  dnf:
+    name: /tmp/cursor.rpm
+    state: present
+    disable_gpg_check: yes
+  when: cursor_check.rc != 0

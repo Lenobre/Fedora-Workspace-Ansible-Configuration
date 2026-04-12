@@ -7,7 +7,6 @@
     user_home: /home/{{ username }}
 
   roles: 
-    - fusion_repo
     - blotware
     - beekeeper
     - filezilla
@@ -18,4 +17,4 @@
     - php
     - composer
     - nodejs
-    - steam
+    - cursor
