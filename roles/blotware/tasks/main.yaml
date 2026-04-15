@@ -4,6 +4,7 @@
       - kmines
       - kmahjongg
       - kpat
+      - "libreoffice*"
       # - ktnef
       # - kmail
       # - kmail-account-wizard
